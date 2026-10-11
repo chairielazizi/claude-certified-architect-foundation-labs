@@ -1,0 +1,53 @@
+{
+  "_about": "Business documents of unknown type. 'absent' lists fields the document does not contain (a correct extraction returns null for them). 'note' says what each document is for in the lab.",
+  "documents": [
+    {
+      "id": "inv-001",
+      "note": "complete invoice; dates and currency need normalizing",
+      "absent": [],
+      "text": "INVOICE\nVendor: Northwind Office Supply\nInvoice #: NW-2026-0142\nInvoice date: March 4, 2026\nPO: PO-55120\nBill to: Contoso Ltd, 1 Main St, Springfield, IL, USA\n- 10 x Copy paper (box) @ 42.50 = 425.00\n- 2 x Toner cartridge @ 89.00 = 178.00\nTotal due: $603.00"
+    },
+    {
+      "id": "inv-002",
+      "note": "no invoice date and no PO number",
+      "absent": ["invoice_date", "po_number"],
+      "text": "INVOICE\nVendor: Bluepeak Consulting GmbH\nInvoice #: BP-7781\n- 1 x Architecture workshop (2 days) @ 3,200.00 = 3,200.00\nTotal due: EUR 3,200.00\nPayment terms: 30 days"
+    },
+    {
+      "id": "inv-003",
+      "note": "category not in the enum -> other + category_detail",
+      "absent": [],
+      "text": "INVOICE\nVendor: Harbor Catering Co.\nInvoice #: HC-118\nInvoice date: 2026-02-27\nPO: PO-55002\n- 40 x Lunch box @ 12.50 = 500.00\nTotal due: $500.00\nNote: catering for the all-hands offsite"
+    },
+    {
+      "id": "inv-004",
+      "note": "ambiguous category -> unclear; day/month date",
+      "absent": [],
+      "text": "INVOICE\nVendor: Meridian Group\nInvoice #: MG-0091\nInvoice date: 15/03/2026\nPO: PO-55133\n- 1 x Q3 services bundle @ 4,800.00 = 4,800.00\nTotal due: GBP 4,800.00"
+    },
+    {
+      "id": "inv-005",
+      "note": "schema-valid but semantically wrong: items sum to 1,150 vs total 1,200; the only reference is a PO number",
+      "absent": ["invoice_number"],
+      "text": "INVOICE\nVendor: Atlas Hardware Ltd\nRef: PO-7781\nInvoice date: 01 Apr 2026\n- 3 x Laptop dock @ 250.00 = 750.00\n- 2 x Monitor arm @ 200.00 = 400.00\nTotal due: $1,200.00"
+    },
+    {
+      "id": "inv-006",
+      "note": "contains a question for the reader; under tool_choice auto the model may answer it instead of extracting",
+      "absent": [],
+      "text": "INVOICE\nVendor: Northwind Office Supply\nInvoice #: NW-2026-0177\nInvoice date: April 2, 2026\nPO: PO-55190\n- 5 x Copy paper (box) @ 42.50 = 212.50\nTotal due: $212.50\nNote from vendor: Can you confirm the new delivery address before we ship the next order?"
+    },
+    {
+      "id": "rcpt-001",
+      "note": "receipt",
+      "absent": [],
+      "text": "CITY CAFE\n12/03/2026 08:14\n1 Latte 4.50\n1 Croissant 3.20\nTOTAL 7.70\nVISA ****4421"
+    },
+    {
+      "id": "ctr-001",
+      "note": "contract",
+      "absent": [],
+      "text": "MASTER SERVICES AGREEMENT\nThis Agreement is made between Contoso Ltd (\"Client\") and Bluepeak Consulting GmbH (\"Provider\").\nEffective date: 1 April 2026\nTerm: 24 months\nGoverning law: England and Wales\nSigned: J. Ruiz (Client), K. Brandt (Provider)"
+    }
+  ]
+}
