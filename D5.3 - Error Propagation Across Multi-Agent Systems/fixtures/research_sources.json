@@ -1,0 +1,73 @@
+{
+  "_comment": "Simulated research sources. behaviour is keyed by 'source|query'; attempts lists the outcome of attempt 1, 2, 3 (the last entry repeats). Unknown source/query pairs return a successful search with zero matches.",
+  "topic": "Impact of AI on creative industries",
+  "plan": [
+    {"subtopic": "visual_arts", "source": "web_search", "query": "AI image generation impact on illustrators"},
+    {"subtopic": "music", "source": "web_search", "query": "AI music generation royalties"},
+    {"subtopic": "writing", "source": "academic_db", "query": "large language models publishing industry employment"},
+    {"subtopic": "film", "source": "web_search", "query": "AI impact on film production visual effects jobs budgets distribution and audiences worldwide"},
+    {"subtopic": "games", "source": "news_archive", "query": "AI tools in game studio art pipelines"},
+    {"subtopic": "architecture", "source": "academic_db", "query": "generative AI architectural design employment data 2026"}
+  ],
+  "behaviour": {
+    "web_search|AI image generation impact on illustrators": {
+      "attempts": ["ok"],
+      "results": [
+        {"title": "Illustrators report fewer commissions as image generators spread", "url": "https://news.example.com/illustrators-2026", "date": "2026-05-14", "finding": "Freelance illustrators surveyed reported a 23% drop in commissions year over year."},
+        {"title": "Stock image marketplaces add AI collections", "url": "https://tech.example.com/stock-ai", "date": "2026-03-02", "finding": "Two of the three largest stock image marketplaces now sell AI-generated collections next to licensed photography."},
+        {"title": "Concept art teams adopt generative tools for ideation", "url": "https://design.example.com/concept-art", "date": "2026-07-21", "finding": "Studios use generative tools mainly for early ideation; final assets are still produced by artists."}
+      ]
+    },
+    "web_search|AI music generation royalties": {
+      "attempts": ["timeout", "ok"],
+      "results": [
+        {"title": "Streaming services label AI-generated tracks", "url": "https://music.example.com/ai-labels", "date": "2026-06-09", "finding": "Major streaming services began labelling fully AI-generated tracks in 2026."},
+        {"title": "Royalty pools and synthetic music", "url": "https://royalty.example.org/synthetic", "date": "2026-04-18", "finding": "Collecting societies are debating whether AI-generated tracks should share in royalty pools."}
+      ]
+    },
+    "academic_db|large language models publishing industry employment": {
+      "attempts": ["access_denied"],
+      "alternatives": [
+        {"action": "alternative_source", "source": "industry_reports"},
+        {"action": "alternative_source", "source": "web_search"}
+      ]
+    },
+    "industry_reports|large language models publishing industry employment": {
+      "attempts": ["ok"],
+      "results": [
+        {"title": "Publishing Workforce Report 2026", "url": "https://reports.example.org/publishing-2026", "date": "2026-02-27", "finding": "Copy-editing roles fell 11% between 2024 and 2026 while acquisitions roles were flat."},
+        {"title": "Translation market outlook", "url": "https://reports.example.org/translation-outlook", "date": "2026-01-15", "finding": "Machine-assisted translation now covers most commercial translation volume, with human post-editing."}
+      ]
+    },
+    "web_search|AI impact on film production visual effects jobs budgets distribution and audiences worldwide": {
+      "attempts": ["timeout", "timeout", "timeout"],
+      "partial": [
+        {"title": "VFX houses pilot AI rotoscoping", "url": "https://film.example.com/vfx-roto", "date": "2026-08-03", "finding": "Several VFX houses report that AI rotoscoping roughly halved the labour for that task."}
+      ],
+      "alternatives": [
+        {"action": "narrow_query", "query": "AI visual effects film production"},
+        {"action": "alternative_source", "source": "news_archive"}
+      ]
+    },
+    "web_search|AI visual effects film production": {
+      "attempts": ["ok"],
+      "results": [
+        {"title": "VFX houses pilot AI rotoscoping", "url": "https://film.example.com/vfx-roto", "date": "2026-08-03", "finding": "Several VFX houses report that AI rotoscoping roughly halved the labour for that task."},
+        {"title": "Guild agreement sets AI disclosure rules", "url": "https://film.example.com/guild-ai", "date": "2026-05-30", "finding": "A 2026 guild agreement requires studios to disclose AI-generated visual effects to performers."}
+      ]
+    },
+    "news_archive|AI tools in game studio art pipelines": {
+      "attempts": ["rate_limited", "rate_limited", "rate_limited"],
+      "partial": [
+        {"title": "Studios use AI for texture variants", "url": "https://games.example.com/texture-ai", "date": "2026-09-12", "finding": "Mid-size studios report using AI to generate texture variants; character art remains manual."}
+      ],
+      "alternatives": [
+        {"action": "retry_later", "after_seconds": 900}
+      ]
+    },
+    "academic_db|generative AI architectural design employment data 2026": {
+      "attempts": ["ok"],
+      "results": []
+    }
+  }
+}
