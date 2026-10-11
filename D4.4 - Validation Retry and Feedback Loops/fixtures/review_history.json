@@ -1,0 +1,46 @@
+{
+  "_about": "Two weeks of simulated developer feedback on automated review findings. Every finding carries detected_pattern: the code construct that triggered it.",
+  "findings": [
+    {"id": "R-01", "file": "api/orders.py", "category": "security", "detected_pattern": "sql-string-format", "message": "Query built with f-string from request input", "developer_action": "accepted"},
+    {"id": "R-02", "file": "api/users.py", "category": "security", "detected_pattern": "sql-string-format", "message": "Query built with % formatting from user id", "developer_action": "accepted"},
+    {"id": "R-03", "file": "reports/export.py", "category": "security", "detected_pattern": "sql-string-format", "message": "Table name interpolated into SQL", "developer_action": "accepted"},
+    {"id": "R-04", "file": "admin/search.py", "category": "security", "detected_pattern": "sql-string-format", "message": "LIKE pattern built by concatenation", "developer_action": "accepted"},
+    {"id": "R-05", "file": "migrations/0042.py", "category": "security", "detected_pattern": "sql-string-format", "message": "Static DDL string formatted with constant", "developer_action": "dismissed"},
+    {"id": "R-06", "file": "billing/sync.py", "category": "security", "detected_pattern": "sql-string-format", "message": "Invoice id formatted into UPDATE", "developer_action": "accepted"},
+
+    {"id": "R-07", "file": "orders/cart.py", "category": "bug", "detected_pattern": "missing-null-check", "message": "coupon may be None before .code", "developer_action": "accepted"},
+    {"id": "R-08", "file": "orders/status.py", "category": "bug", "detected_pattern": "missing-null-check", "message": "shipment may be None", "developer_action": "accepted"},
+    {"id": "R-09", "file": "users/profile.py", "category": "bug", "detected_pattern": "missing-null-check", "message": "avatar may be None (guarded by caller)", "developer_action": "dismissed"},
+    {"id": "R-10", "file": "billing/tax.py", "category": "bug", "detected_pattern": "missing-null-check", "message": "region lookup may return None", "developer_action": "accepted"},
+    {"id": "R-11", "file": "inventory/stock.py", "category": "bug", "detected_pattern": "missing-null-check", "message": "warehouse may be None", "developer_action": "accepted"},
+    {"id": "R-12", "file": "api/auth.py", "category": "bug", "detected_pattern": "missing-null-check", "message": "token may be None (decorator guarantees it)", "developer_action": "dismissed"},
+    {"id": "R-13", "file": "reports/weekly.py", "category": "bug", "detected_pattern": "missing-null-check", "message": "start_date may be None", "developer_action": "accepted"},
+    {"id": "R-14", "file": "search/index.py", "category": "bug", "detected_pattern": "missing-null-check", "message": "doc may be None (filtered above)", "developer_action": "dismissed"},
+
+    {"id": "R-15", "file": "api/handlers.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception (logs and re-raises)", "developer_action": "dismissed"},
+    {"id": "R-16", "file": "api/webhooks.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception (logs and re-raises)", "developer_action": "dismissed"},
+    {"id": "R-17", "file": "jobs/nightly.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception (logs and re-raises)", "developer_action": "dismissed"},
+    {"id": "R-18", "file": "api/admin.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception (logs and re-raises)", "developer_action": "dismissed"},
+    {"id": "R-19", "file": "workers/email.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception, re-raises a different type and loses the cause", "developer_action": "accepted"},
+    {"id": "R-20", "file": "api/orders.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception (logs and re-raises)", "developer_action": "dismissed"},
+    {"id": "R-21", "file": "api/users.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception (logs and re-raises)", "developer_action": "dismissed"},
+    {"id": "R-22", "file": "jobs/cleanup.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception (logs and re-raises)", "developer_action": "dismissed"},
+    {"id": "R-23", "file": "api/search.py", "category": "bug", "detected_pattern": "broad-except-reraise", "message": "Broad except Exception (logs and re-raises)", "developer_action": "dismissed"},
+
+    {"id": "R-24", "file": "tests/test_cart.py", "category": "style", "detected_pattern": "magic-number-in-test", "message": "Magic number 42 in assertion", "developer_action": "dismissed"},
+    {"id": "R-25", "file": "tests/test_tax.py", "category": "style", "detected_pattern": "magic-number-in-test", "message": "Magic number 0.2 in assertion", "developer_action": "dismissed"},
+    {"id": "R-26", "file": "tests/test_stock.py", "category": "style", "detected_pattern": "magic-number-in-test", "message": "Magic number 100 in fixture", "developer_action": "dismissed"},
+    {"id": "R-27", "file": "tests/test_users.py", "category": "style", "detected_pattern": "magic-number-in-test", "message": "Magic number 3 in loop", "developer_action": "dismissed"},
+    {"id": "R-28", "file": "tests/test_search.py", "category": "style", "detected_pattern": "magic-number-in-test", "message": "Magic number 10 in page size", "developer_action": "dismissed"},
+    {"id": "R-29", "file": "tests/test_refund.py", "category": "style", "detected_pattern": "magic-number-in-test", "message": "Magic number 19.99 in expected total", "developer_action": "dismissed"},
+
+    {"id": "R-30", "file": "workers/sync.py", "category": "bug", "detected_pattern": "unbounded-retry-loop", "message": "while True retry without backoff or limit", "developer_action": "accepted"},
+    {"id": "R-31", "file": "billing/gateway.py", "category": "bug", "detected_pattern": "unbounded-retry-loop", "message": "Retries forever on 4xx responses", "developer_action": "accepted"},
+    {"id": "R-32", "file": "jobs/import.py", "category": "bug", "detected_pattern": "unbounded-retry-loop", "message": "Retry loop ignores max attempts setting", "developer_action": "accepted"},
+    {"id": "R-33", "file": "api/webhooks.py", "category": "bug", "detected_pattern": "unbounded-retry-loop", "message": "Redelivery loop has no cap", "developer_action": "accepted"},
+
+    {"id": "R-34", "file": "tags/model.py", "category": "bug", "detected_pattern": "mutable-default-arg", "message": "def add(tag, tags=[])", "developer_action": "accepted"},
+    {"id": "R-35", "file": "utils/cache.py", "category": "bug", "detected_pattern": "mutable-default-arg", "message": "def memo(key, store={}) (intentional module cache)", "developer_action": "dismissed"},
+    {"id": "R-36", "file": "orders/filters.py", "category": "bug", "detected_pattern": "mutable-default-arg", "message": "def build(filters=[])", "developer_action": "accepted"}
+  ]
+}

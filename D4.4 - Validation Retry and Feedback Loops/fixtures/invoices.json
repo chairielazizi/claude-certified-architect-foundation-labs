@@ -1,0 +1,25 @@
+{
+  "_about": "Invoices for the validation-retry loop. 'note' says what each one demonstrates.",
+  "invoices": [
+    {
+      "id": "INV-A",
+      "note": "format errors on the first pass (date as printed, currency in words); fixable by retry",
+      "text": "INVOICE INV-A-301\nVendor: Kestrel Print Works\nInvoice date: 14/03/2026\nCurrency: US dollars\n- 2 x Banner print @ 120.00 = 240.00\n- 1 x Design proof @ 60.00 = 60.00\nTotal: 300.00\nPO number: PO-88120"
+    },
+    {
+      "id": "INV-B",
+      "note": "PO number lives in a document that was not provided; retrying cannot help",
+      "text": "INVOICE INV-B-302\nVendor: Granite Facilities Ltd\nInvoice date: 2026-03-20\nCurrency: GBP\n- 1 x Quarterly cleaning contract @ 1,800.00 = 1,800.00\nTotal: 1,800.00\nPO number: see the attached purchase order"
+    },
+    {
+      "id": "INV-C",
+      "note": "the source itself is inconsistent: items sum to 1,150, stated total 1,200",
+      "text": "INVOICE INV-C-303\nVendor: Orbit Cloud Services\nInvoice date: 2026-03-28\nCurrency: EUR\n- 12 x Compute hours pack @ 75.00 = 900.00\n- 1 x Support plan @ 250.00 = 250.00\nTotal: 1,200.00\nPO number: PO-88141"
+    },
+    {
+      "id": "INV-D",
+      "note": "clean; passes on the first attempt",
+      "text": "INVOICE INV-D-304\nVendor: Kestrel Print Works\nInvoice date: 2026-03-30\nCurrency: USD\n- 4 x Poster print @ 35.00 = 140.00\nTotal: 140.00\nPO number: PO-88150"
+    }
+  ]
+}
