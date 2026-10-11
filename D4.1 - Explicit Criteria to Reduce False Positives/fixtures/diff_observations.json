@@ -1,0 +1,101 @@
+{
+  "_about": "Everything a reviewer could notice in sample_diff.txt. The offline scripted reviewer 'notices' all of these; the prompt decides which it reports. 'label' is the ground truth from a senior-reviewer audit; 'rubric_severity' is what the explicit severity rubric prescribes; 'unguided_severity' is what a reviewer picks with no rubric; 'self_confidence' is how sure the reviewer feels.",
+  "observations": [
+    {
+      "id": "O1",
+      "line": 8,
+      "category": "security",
+      "evidence": "WHERE customer = '{customer}'",
+      "issue": "SQL is built with an f-string from the customer argument; customer=\"x' OR '1'='1\" returns every customer's orders. Use a parameterized query.",
+      "contradicts_code": false,
+      "label": "true_positive",
+      "rubric_severity": "critical",
+      "unguided_severity": "medium",
+      "self_confidence": 0.95
+    },
+    {
+      "id": "O2",
+      "line": 14,
+      "category": "bug",
+      "evidence": "return total_rows // PAGE_SIZE",
+      "issue": "Floor division drops the last partial page: 120 rows -> 2 pages, so rows 101-120 are never shown. Use ceiling division.",
+      "contradicts_code": false,
+      "label": "true_positive",
+      "rubric_severity": "high",
+      "unguided_severity": "medium",
+      "self_confidence": 0.9
+    },
+    {
+      "id": "O3",
+      "line": 18,
+      "category": "comment_accuracy",
+      "evidence": "# Returns None when the order does not exist.",
+      "issue": "Comment says None is returned for a missing order, but orders[order_id] raises KeyError; callers that check for None will crash.",
+      "contradicts_code": true,
+      "label": "true_positive",
+      "rubric_severity": "medium",
+      "unguided_severity": "low",
+      "self_confidence": 0.9
+    },
+    {
+      "id": "O4",
+      "line": 7,
+      "category": "comment_accuracy",
+      "evidence": "# Look up all orders for a customer.",
+      "issue": "Comment says 'all orders' but only the id and total columns are selected; consider 'Look up order ids and totals'.",
+      "contradicts_code": false,
+      "label": "false_positive",
+      "rubric_severity": "low",
+      "unguided_severity": "medium",
+      "self_confidence": 0.8
+    },
+    {
+      "id": "O5",
+      "line": 23,
+      "category": "comment_accuracy",
+      "evidence": "# Formats an order as a CSV line.",
+      "issue": "Comment does not mention that fields are not quoted or escaped.",
+      "contradicts_code": false,
+      "label": "false_positive",
+      "rubric_severity": "low",
+      "unguided_severity": "low",
+      "self_confidence": 0.6
+    },
+    {
+      "id": "O6",
+      "line": 22,
+      "category": "style",
+      "evidence": "def to_csv_row(o: dict)",
+      "issue": "Single-letter parameter name 'o'; prefer 'order'.",
+      "contradicts_code": false,
+      "label": "false_positive",
+      "rubric_severity": "low",
+      "unguided_severity": "medium",
+      "self_confidence": 0.9
+    },
+    {
+      "id": "O7",
+      "line": 27,
+      "category": "style",
+      "evidence": "def summarize(rows):",
+      "issue": "summarize() has no type hints or docstring.",
+      "contradicts_code": false,
+      "label": "false_positive",
+      "rubric_severity": "low",
+      "unguided_severity": "high",
+      "self_confidence": 0.95
+    },
+    {
+      "id": "O8",
+      "line": 3,
+      "category": "local_pattern",
+      "evidence": "PAGE_SIZE = 50",
+      "issue": "PAGE_SIZE is hard-coded; move it to configuration. (Every other export module in this repo defines its page size the same way.)",
+      "contradicts_code": false,
+      "label": "false_positive",
+      "rubric_severity": "low",
+      "unguided_severity": "medium",
+      "self_confidence": 0.85
+    }
+  ]
+}

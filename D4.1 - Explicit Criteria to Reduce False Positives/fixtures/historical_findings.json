@@ -1,0 +1,42 @@
+{
+  "_about": "Four weeks of automated review findings from the current production prompt. 'label' comes from a senior-reviewer audit (ground truth). 'developer_action' is what the PR author actually did. A true positive that was dismissed means the developer ignored a real issue.",
+  "findings": [
+    {"id": "F-01", "week": 1, "category": "bug", "file": "billing/invoice.py", "summary": "Discount applied after tax instead of before", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-02", "week": 1, "category": "bug", "file": "orders/cart.py", "summary": "Empty cart raises IndexError in total()", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-03", "week": 1, "category": "security", "file": "auth/session.py", "summary": "Session token logged at INFO level", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-04", "week": 1, "category": "performance", "file": "reports/monthly.py", "summary": "N+1 query: one SELECT per customer in loop", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-05", "week": 1, "category": "performance", "file": "search/index.py", "summary": "List membership test inside loop over all products (quadratic)", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-06", "week": 1, "category": "comment_accuracy", "file": "orders/cart.py", "summary": "Comment 'adds item' could say 'adds or increments item'", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-07", "week": 1, "category": "comment_accuracy", "file": "billing/tax.py", "summary": "Comment does not mention rounding mode", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-08", "week": 1, "category": "comment_accuracy", "file": "auth/tokens.py", "summary": "Comment says tokens expire in 24h; code uses 1h", "label": "true_positive", "developer_action": "fixed"},
+
+    {"id": "F-09", "week": 2, "category": "bug", "file": "billing/refund.py", "summary": "Partial refund can exceed original charge", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-10", "week": 2, "category": "bug", "file": "orders/status.py", "summary": "Cancelled orders counted as shipped", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-11", "week": 2, "category": "bug", "file": "inventory/stock.py", "summary": "Negative stock allowed after concurrent reservations", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-12", "week": 2, "category": "security", "file": "api/upload.py", "summary": "Path traversal via uploaded filename", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-13", "week": 2, "category": "security", "file": "api/health.py", "summary": "Health endpoint is unauthenticated (by design, returns no data)", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-14", "week": 2, "category": "performance", "file": "cli/export.py", "summary": "String concatenation in loop (runs once on 20 rows)", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-15", "week": 2, "category": "comment_accuracy", "file": "inventory/stock.py", "summary": "Comment uses 'items' where code says 'units'", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-16", "week": 2, "category": "comment_accuracy", "file": "api/upload.py", "summary": "Docstring missing description of return value", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-17", "week": 2, "category": "comment_accuracy", "file": "billing/refund.py", "summary": "Docstring says raises ValueError; code returns None", "label": "true_positive", "developer_action": "fixed"},
+
+    {"id": "F-18", "week": 3, "category": "bug", "file": "billing/currency.py", "summary": "JPY amounts multiplied by 100 (JPY has no minor unit)", "label": "true_positive", "developer_action": "dismissed"},
+    {"id": "F-19", "week": 3, "category": "bug", "file": "orders/cart.py", "summary": "Possible None (guarded two lines earlier)", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-20", "week": 3, "category": "security", "file": "auth/reset.py", "summary": "Password reset token not invalidated after use", "label": "true_positive", "developer_action": "dismissed"},
+    {"id": "F-21", "week": 3, "category": "performance", "file": "reports/weekly.py", "summary": "Loads entire orders table into memory to count rows", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-22", "week": 3, "category": "performance", "file": "utils/dates.py", "summary": "Regex compiled per call (called twice per request)", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-23", "week": 3, "category": "comment_accuracy", "file": "billing/currency.py", "summary": "Comment could explain why rates are cached", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-24", "week": 3, "category": "comment_accuracy", "file": "reports/weekly.py", "summary": "Comment says 'week' but should say 'ISO week'", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-25", "week": 3, "category": "comment_accuracy", "file": "auth/reset.py", "summary": "TODO comment is outdated wording", "label": "false_positive", "developer_action": "dismissed"},
+
+    {"id": "F-26", "week": 4, "category": "bug", "file": "orders/shipping.py", "summary": "Free-shipping threshold compared in cents vs dollars", "label": "true_positive", "developer_action": "dismissed"},
+    {"id": "F-27", "week": 4, "category": "bug", "file": "billing/invoice.py", "summary": "Invoice number reused after year rollover", "label": "true_positive", "developer_action": "dismissed"},
+    {"id": "F-28", "week": 4, "category": "bug", "file": "inventory/transfer.py", "summary": "Transfer debits source twice on retry", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-29", "week": 4, "category": "security", "file": "api/admin.py", "summary": "Admin route missing role check", "label": "true_positive", "developer_action": "fixed"},
+    {"id": "F-30", "week": 4, "category": "security", "file": "api/webhooks.py", "summary": "Webhook signature compared with == (timing attack)", "label": "true_positive", "developer_action": "dismissed"},
+    {"id": "F-31", "week": 4, "category": "performance", "file": "search/suggest.py", "summary": "Full table scan on every keystroke (no index on prefix)", "label": "true_positive", "developer_action": "dismissed"},
+    {"id": "F-32", "week": 4, "category": "comment_accuracy", "file": "orders/shipping.py", "summary": "Comment abbreviates 'quantity' as 'qty'", "label": "false_positive", "developer_action": "dismissed"},
+    {"id": "F-33", "week": 4, "category": "comment_accuracy", "file": "api/webhooks.py", "summary": "Comment says retries 3 times; code retries 5 times", "label": "true_positive", "developer_action": "dismissed"},
+    {"id": "F-34", "week": 4, "category": "comment_accuracy", "file": "inventory/transfer.py", "summary": "Comment could mention idempotency", "label": "false_positive", "developer_action": "dismissed"}
+  ]
+}

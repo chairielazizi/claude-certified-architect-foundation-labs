@@ -1,0 +1,36 @@
+diff --git a/orders/export.py b/orders/export.py
+new file mode 100644
+--- /dev/null
++++ b/orders/export.py
+@@ -0,0 +1,31 @@
++import sqlite3
++
++PAGE_SIZE = 50
++
++
++def fetch_orders(conn: sqlite3.Connection, customer: str) -> list[tuple]:
++    # Look up all orders for a customer.
++    query = f"SELECT id, total FROM orders WHERE customer = '{customer}'"
++    return conn.execute(query).fetchall()
++
++
++def page_count(total_rows: int) -> int:
++    # Returns the number of pages needed to show every row.
++    return total_rows // PAGE_SIZE
++
++
++def find_order(orders: dict[str, dict], order_id: str) -> dict:
++    # Returns None when the order does not exist.
++    return orders[order_id]
++
++
++def to_csv_row(o: dict) -> str:
++    # Formats an order as a CSV line.
++    return ",".join([str(o["id"]), str(o["total"]), o["status"]])
++
++
++def summarize(rows):
++    t = 0
++    for r in rows:
++        t += r[1]
++    return t
