@@ -1,0 +1,24 @@
+{
+  "customer": "alice@example.com",
+  "turns": [
+    {"role": "user", "text": "Hi, it's alice@example.com. My wireless headphones from ORD-5521 stopped working. I paid $89.90 on 2026-09-20."},
+    {"role": "assistant", "text": "Sorry about that. I can see ORD-5521 was delivered on 2026-10-02, so it is inside the return window. Would you prefer a refund or a replacement?"},
+    {"role": "user", "text": "A refund please. I expect a callback by Friday confirming the refund."},
+    {"role": "assistant", "text": "Done: I opened a refund of $89.90 for ORD-5521, status: refund_pending. You will get a callback by Friday."},
+    {"role": "user", "text": "Also, the charger from ORD-5590 arrived cracked. It cost $24.50."},
+    {"role": "assistant", "text": "I have arranged a free replacement charger for ORD-5590, status: replacement_shipped."},
+    {"role": "user", "text": "Thanks. Unrelated question: do you sell the newer Series 5 headphones?"},
+    {"role": "assistant", "text": "Yes, the Series 5 is in stock in three colours and ships in two days."},
+    {"role": "user", "text": "I also think I was charged twice for ORD-5602, $129.00 each time, on 2026-10-05."},
+    {"role": "assistant", "text": "I am investigating the duplicate $129.00 charge on ORD-5602, status: investigating."},
+    {"role": "user", "text": "What colours does the Series 5 come in?"},
+    {"role": "assistant", "text": "Black, silver and midnight blue."},
+    {"role": "user", "text": "And how long do refunds usually take to arrive?"},
+    {"role": "assistant", "text": "Usually five to seven business days after the refund is approved."},
+    {"role": "user", "text": "My bank confirmed the duplicate charge on ORD-5602."},
+    {"role": "assistant", "text": "Thanks. I issued a reversal of $129.00 for ORD-5602, status: reversal_issued."},
+    {"role": "user", "text": "Is the Series 5 compatible with my phone?"},
+    {"role": "assistant", "text": "Yes, it works with every phone that supports Bluetooth audio."}
+  ],
+  "final_question": "Before I go, can you recap where each of my issues stands and confirm what you promised me?"
+}
