@@ -1,0 +1,4 @@
+ src/api/cart.ts                     | 18 ++++++---
+ src/components/CartSummary.test.tsx | 31 +++++++++++++++
+ src/components/CartSummary.tsx      | 42 +++++++++++++-------
+ 3 files changed, 71 insertions(+), 20 deletions(-)
