@@ -1,0 +1,25 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node / TypeScript
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Secrets and local-only config
+.env
+.env.*
+!.env.example
+CLAUDE.local.md
+
+# Lab runtime artifacts (scratchpads, manifests, session registries written by demos)
+**/.lab-runtime/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

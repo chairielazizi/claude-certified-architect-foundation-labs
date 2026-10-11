@@ -1,0 +1,10 @@
+# Claude API SDK (Messages API, tool use, Message Batches)
+anthropic>=1.13.0
+# Claude Agent SDK (Claude Code as a library: subagents, hooks, sessions, built-in tools)
+claude-agent-sdk>=0.2.165
+# Model Context Protocol server SDK (v2: FastMCP was renamed to MCPServer)
+mcp>=2.3.0
+# Schema validation for extraction / validation-retry labs
+pydantic>=2.14.0
+# Frontmatter parsing for the Claude Code configuration labs (Domain 3)
+pyyaml>=6.0.3
