@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+.env
+.env.*
+
+# Personal Claude Code memory for this checkout (see CLAUDE.local.md.example)
+CLAUDE.local.md
+# Personal Claude Code settings
+.claude/settings.local.json

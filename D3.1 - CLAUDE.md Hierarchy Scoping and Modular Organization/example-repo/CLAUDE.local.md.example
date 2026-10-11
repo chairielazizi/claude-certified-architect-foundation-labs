@@ -1,0 +1,8 @@
+# CLAUDE.local.md (personal, this repository only)
+
+Copy this file to `CLAUDE.local.md` in the repo root. That name is gitignored, so whatever you put in it
+applies only to you, in this checkout. Team conventions do NOT belong here: put them in `CLAUDE.md`.
+
+- My local Postgres listens on port 5433, not 5432: `DATABASE_URL=postgres://localhost:5433/acme_dev`.
+- I am on the refunds epic this sprint; when unsure where to start, look in `packages/payments/src/refunds/`.
+- Keep explanations short; I know this codebase.
