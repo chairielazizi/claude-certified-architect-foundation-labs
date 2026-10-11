@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "description": "pytest function name, e.g. test_second_partial_refund_cannot_exceed_charge" },
+          "behavior": { "type": "string", "description": "The behavior under test, as one sentence." },
+          "fixtures": { "type": "array", "items": { "type": "string" } },
+          "catches": { "type": "string", "description": "The plausible bug this test would catch." }
+        },
+        "required": ["name", "behavior", "fixtures", "catches"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["scenarios"],
+  "additionalProperties": false
+}

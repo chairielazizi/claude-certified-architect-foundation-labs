@@ -1,0 +1,81 @@
+# Claude PR review, running the Claude Code CLI directly.
+#
+# -p (--print) makes Claude Code non-interactive: it runs the prompt, prints the result and exits.
+# Without it the job waits for terminal input forever. --output-format json + --json-schema give a
+# machine-readable result whose validated object is in .structured_output; jq turns it into inline
+# review comments. On re-runs (new commits), the comments this job posted earlier are fed back in, so
+# Claude reports only new or still-unaddressed issues.
+name: Claude PR review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: claude-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Collect findings this job posted on earlier pushes
+        run: |
+          mkdir -p .ci
+          gh api --paginate "repos/${{ github.repository }}/pulls/$PR/comments" \
+            --jq '[.[] | select(.body | contains("<!-- claude-review ")) | {path, line, body}]' \
+            | jq -s 'add // []' > .ci/prior-comments.json
+          echo "prior comments: $(jq length .ci/prior-comments.json)"
+
+      - name: Review with Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          claude -p "Review the changes in this pull request (git diff origin/$BASE_REF...HEAD) against the review criteria in CLAUDE.md. Report only real problems; use the line number in the new version of each file. .ci/prior-comments.json holds the findings already posted on this PR (each comment body embeds its id): report only issues that are NEW or STILL UNADDRESSED, reuse the id and set status still_open for a prior issue that still exists, and list prior ids the new commits fixed in resolved_prior_ids." \
+            --output-format json \
+            --json-schema "$(cat ci/review-findings.schema.json)" \
+            --allowedTools "Read,Grep,Glob,Bash(git diff *),Bash(git log *)" \
+            --max-turns 12 \
+            > .ci/review-result.json
+          jq -e '.is_error == false and .structured_output != null' .ci/review-result.json > /dev/null
+
+      - name: Post new findings as inline comments
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          jq --arg sha "$HEAD_SHA" '.structured_output as $r | {
+              commit_id: $sha,
+              event: "COMMENT",
+              body: ("Claude review: " + $r.summary + "\nResolved since last review: " + ($r.resolved_prior_ids | join(", "))),
+              comments: [ $r.findings[] | select(.status == "new") | {
+                path: .file, line: .line, side: "RIGHT",
+                body: ("**[" + .severity + "] " + .title + "**\n\n" + .explanation + "\n\nSuggestion: " + .suggestion
+                       + "\n\n<!-- claude-review " + ({id, category, title} | tojson) + " -->")
+              } ]
+            }' .ci/review-result.json > .ci/review-payload.json
+          if [ "$(jq '.comments | length' .ci/review-payload.json)" -gt 0 ]; then
+            gh api "repos/${{ github.repository }}/pulls/$PR/reviews" --method POST --input .ci/review-payload.json
+          else
+            echo "no new findings to post"
+          fi

@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "description": "Stable kebab-case slug. Reuse the id of a prior finding for the same issue." },
+          "status": { "type": "string", "enum": ["new", "still_open"] },
+          "file": { "type": "string" },
+          "line": { "type": "integer", "minimum": 1, "description": "Line in the NEW version of the file." },
+          "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+          "category": { "type": "string", "enum": ["security", "correctness", "test-coverage", "maintainability"] },
+          "title": { "type": "string" },
+          "explanation": { "type": "string" },
+          "suggestion": { "type": "string" }
+        },
+        "required": ["id", "status", "file", "line", "severity", "category", "title", "explanation", "suggestion"],
+        "additionalProperties": false
+      }
+    },
+    "resolved_prior_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Ids of previously reported findings that the new commits fixed."
+    },
+    "summary": { "type": "string" }
+  },
+  "required": ["findings", "resolved_prior_ids", "summary"],
+  "additionalProperties": false
+}
