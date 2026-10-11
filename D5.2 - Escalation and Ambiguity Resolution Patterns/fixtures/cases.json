@@ -1,0 +1,18 @@
+{
+  "_comment": "Labelled test cases. expected = what a policy reviewer says should happen (escalate | resolve | reply). reason = which escalation criterion applies. sentiment (-1..1, from a sentiment model) and self_confidence (1-10, the agent's own estimate that it can handle the case) were logged from a previous agent version.",
+  "cases": [
+    {"id": "C01", "message": "I want to speak to a human, please. It's about my order ORD-7001.", "expected": "escalate", "reason": "explicit_request", "sentiment": -0.1, "self_confidence": 8},
+    {"id": "C02", "message": "My blender (ORD-7002) arrived with a cracked jar. Photo attached.", "expected": "resolve", "reason": null, "sentiment": -0.3, "self_confidence": 5},
+    {"id": "C03", "message": "BestMart has my headphones (ORD-7003) for $15 less. Can you match their price?", "expected": "escalate", "reason": "policy_gap", "sentiment": 0.0, "self_confidence": 9},
+    {"id": "C04", "message": "The price of the speaker I bought (ORD-7004) dropped on your site three days after I ordered it.", "expected": "resolve", "reason": null, "sentiment": -0.2, "self_confidence": 6},
+    {"id": "C05", "message": "UNBELIEVABLE. Second time my kettle (ORD-7005) shows up dented. Photo attached. Fix this!", "expected": "resolve", "reason": null, "sentiment": -0.9, "self_confidence": 5},
+    {"id": "C06", "message": "I know it's past the 30-day window, but can you make an exception and refund ORD-7006? I was in hospital.", "expected": "escalate", "reason": "policy_exception", "sentiment": -0.2, "self_confidence": 8},
+    {"id": "C07", "message": "My refund for ORD-7007 was confirmed three weeks ago but it hasn't reached my bank.", "expected": "escalate", "reason": "no_progress", "sentiment": -0.3, "self_confidence": 5},
+    {"id": "C08", "message": "Can I talk to a manager? My order ORD-7008 is a week late and nobody has told me why.", "expected": "escalate", "reason": "explicit_request", "sentiment": -0.6, "self_confidence": 7},
+    {"id": "C09", "message": "My desk lamp from ORD-7009 arrived broken.", "expected": "reply", "reason": null, "sentiment": -0.4, "self_confidence": 6},
+    {"id": "C11", "message": "Hello! Small thing: one mug in my set (ORD-7011) came chipped. Photo attached, no rush at all.", "expected": "resolve", "reason": null, "sentiment": 0.6, "self_confidence": 7},
+    {"id": "C12", "message": "Hi! Love your store. Would you price-match Amazon's deal on my tablet, ORD-7012?", "expected": "escalate", "reason": "policy_gap", "sentiment": 0.7, "self_confidence": 9},
+    {"id": "C13", "message": "Seriously?! You dropped the price of my camera ORD-7013 right after I bought it. Ridiculous.", "expected": "resolve", "reason": null, "sentiment": -0.8, "self_confidence": 4},
+    {"id": "C14", "message": "We're a design studio and would like a 20% bulk discount on future orders for our company.", "expected": "escalate", "reason": "policy_gap", "sentiment": 0.3, "self_confidence": 8}
+  ]
+}

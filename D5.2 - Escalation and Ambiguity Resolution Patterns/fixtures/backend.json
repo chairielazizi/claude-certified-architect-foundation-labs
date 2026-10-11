@@ -1,0 +1,26 @@
+{
+  "orders": {
+    "ORD-7001": {"order_id": "ORD-7001", "item": "wireless earbuds", "total": "59.00", "status": "delivered", "delivered_on": "2026-10-03"},
+    "ORD-7002": {"order_id": "ORD-7002", "item": "blender", "total": "89.00", "status": "delivered", "delivered_on": "2026-10-06"},
+    "ORD-7003": {"order_id": "ORD-7003", "item": "noise-cancelling headphones", "total": "199.00", "status": "delivered", "delivered_on": "2026-10-01"},
+    "ORD-7004": {"order_id": "ORD-7004", "item": "bookshelf speaker", "total": "149.00", "status": "delivered", "purchased_on": "2026-10-07", "delivered_on": "2026-10-09", "current_site_price": "129.00"},
+    "ORD-7005": {"order_id": "ORD-7005", "item": "electric kettle", "total": "45.00", "status": "delivered", "delivered_on": "2026-10-08"},
+    "ORD-7006": {"order_id": "ORD-7006", "item": "smartwatch", "total": "249.00", "status": "delivered", "delivered_on": "2026-08-20"},
+    "ORD-7007": {"order_id": "ORD-7007", "item": "27-inch monitor", "total": "329.00", "status": "returned", "refund_status": "issued", "refund_issued_on": "2026-09-18"},
+    "ORD-7008": {"order_id": "ORD-7008", "item": "mesh router", "total": "99.00", "status": "in_transit", "expected_delivery": "2026-10-04"},
+    "ORD-7009": {"order_id": "ORD-7009", "item": "desk lamp", "total": "39.00", "status": "delivered", "delivered_on": "2026-10-09"},
+    "ORD-7011": {"order_id": "ORD-7011", "item": "mug set", "total": "28.00", "status": "delivered", "delivered_on": "2026-10-07"},
+    "ORD-7012": {"order_id": "ORD-7012", "item": "tablet", "total": "399.00", "status": "delivered", "delivered_on": "2026-10-05"},
+    "ORD-7013": {"order_id": "ORD-7013", "item": "mirrorless camera", "total": "640.00", "status": "delivered", "purchased_on": "2026-10-02", "delivered_on": "2026-10-04", "current_site_price": "600.00"}
+  },
+  "customers": [
+    {"customer_id": "C-2001", "name": "John Smith", "email": "john.smith@mail.com", "city": "Austin", "postal_code": "78701",
+     "latest_order": {"order_id": "ORD-7019", "item": "USB hub", "status": "delivered", "date": "2026-09-12"}},
+    {"customer_id": "C-2002", "name": "John Smith", "email": "jsmith88@mail.com", "city": "Denver", "postal_code": "80202",
+     "latest_order": {"order_id": "ORD-7020", "item": "webcam", "status": "shipped", "date": "2026-10-08"}},
+    {"customer_id": "C-2003", "name": "John Smith", "email": "john.r.smith@mail.com", "city": "Boston", "postal_code": "02108",
+     "latest_order": {"order_id": "ORD-7031", "item": "gaming mouse", "status": "processing", "date": "2026-10-10"}},
+    {"customer_id": "C-2100", "name": "Alice Tan", "email": "alice@example.com", "city": "Singapore", "postal_code": "049712",
+     "latest_order": {"order_id": "ORD-5521", "item": "wireless headphones", "status": "delivered", "date": "2026-10-02"}}
+  ]
+}
