@@ -111,6 +111,8 @@ and the labs use the current APIs. Each affected lab calls this out:
 | `tool_choice: "any"` and forced `{"type": "tool", "name": ...}` | Still exam-relevant, but **`claude-opus-5-5`, `claude-sonnet-5-5` and `claude-fable-5-1` return HTTP 400** for them. Labs that demo forced selection use `LAB_FORCED_TOOL_MODEL` (default `claude-opus-5`) and also show the modern alternative: `auto` + `strict: true` + verify, or `output_config.format` structured outputs. | D2.3, D4.3 |
 | MCP Python `FastMCP` | `mcp` 2.x renamed it **`MCPServer`** (`from mcp.server import MCPServer`). | D2.2, D2.4 |
 | Skill / command arguments `$1`… | Positional placeholders are **0-based** (`$0` is the first argument). `$ARGUMENTS` holds them all. | D3.2 |
+| Skill `allowed-tools` restricts the tools a skill can use | Current docs describe `allowed-tools` as **pre-approving** tools (no permission prompt). To actually block tools, pair it with `permissions.deny` rules in `.claude/settings.json`. Answer exam questions with the guide's framing. | D3.2 |
+| Batch errors expose `result.error.type` | In both SDKs the error type is nested one level deeper: `result.error.error.type` (for example `"invalid_request_error"`). | D4.5 |
 
 ## Repo layout
 
