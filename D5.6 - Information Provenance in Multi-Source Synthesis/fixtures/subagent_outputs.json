@@ -1,0 +1,82 @@
+{
+  "_comment": "Structured claim-source mappings returned by three research subagents. claim_key groups claims that are about the same thing; value/unit are set for quantitative claims.",
+  "topic": "Generative AI in the music industry",
+  "requested_subtopics": ["market size", "startup funding", "streaming share", "label deals and lawsuits", "detection and watermarking", "session musician employment"],
+  "subagents": [
+    {
+      "agent": "financial_data",
+      "claims": [
+        {"claim_key": "market_size_2025", "subtopic": "market size", "content_type": "financial",
+         "claim": "The global market for AI-generated music was worth USD 3.9 bn in 2025.", "value": "3.9", "unit": "USD bn",
+         "evidence_excerpt": "We estimate the global market for AI music generation at $3.9 billion for calendar year 2025.",
+         "source_url": "https://harmonic-insights.example.com/ai-music-2026", "document_name": "Harmonic Insights: AI Music Market Report 2026",
+         "publication_date": "2026-03-10", "data_collection_period": "2025-01..2025-12", "methodology": "Revenue survey of 120 vendors"},
+        {"claim_key": "ai_music_funding_2026h1", "subtopic": "startup funding", "content_type": "financial",
+         "claim": "AI music startups raised USD 1.2 bn in the first half of 2026.", "value": "1.2", "unit": "USD bn",
+         "evidence_excerpt": "Disclosed rounds for AI music companies totalled $1.2B in H1 2026.",
+         "source_url": "https://pitchdata.example.com/monitor/2026-q2", "document_name": "PitchData Funding Monitor Q2 2026",
+         "publication_date": "2026-07-08", "data_collection_period": "2026-01..2026-06", "methodology": "All disclosed equity and convertible rounds of USD 1M or more"},
+        {"claim_key": "ai_track_streaming_share", "subtopic": "streaming share", "content_type": "financial",
+         "claim": "AI-assisted tracks earned 4% of streaming revenue.", "value": "4", "unit": "% of streaming revenue",
+         "evidence_excerpt": "Tracks flagged as AI-assisted accounted for 4% of royalty-bearing streams by revenue.",
+         "source_url": "https://streamstats.example.org/annual-2024", "document_name": "StreamStats Annual Review 2024",
+         "publication_date": "2025-02-01", "data_collection_period": "2024-01..2024-12", "methodology": "Royalty statement analysis across 3 major platforms"}
+      ]
+    },
+    {
+      "agent": "web_search",
+      "claims": [
+        {"claim_key": "market_size_2025", "subtopic": "market size", "content_type": "financial",
+         "claim": "AI music generation was a USD 3.9 bn market in 2025.", "value": "3.9", "unit": "USD bn",
+         "evidence_excerpt": "Vendor filings put 2025 AI music generation revenue at roughly $3.9bn.",
+         "source_url": "https://musictechreview.example.com/2026/market", "document_name": "Global Music Tech Review 2026",
+         "publication_date": "2026-04-02", "data_collection_period": "2025-01..2025-12", "methodology": "Aggregation of public vendor filings"},
+        {"claim_key": "ai_music_funding_2026h1", "subtopic": "startup funding", "content_type": "financial",
+         "claim": "AI music startups raised USD 0.8 bn in the first half of 2026.", "value": "0.8", "unit": "USD bn",
+         "evidence_excerpt": "Equity funding into AI music reached $800 million in the first six months of 2026.",
+         "source_url": "https://venturewatch.example.com/h1-2026", "document_name": "VentureWatch H1 2026 Report",
+         "publication_date": "2026-07-15", "data_collection_period": "2026-01..2026-06", "methodology": "Equity rounds only; excludes convertible notes"},
+        {"claim_key": "label_licensing_deal", "subtopic": "label deals and lawsuits", "content_type": "news",
+         "claim": "A major label signed a catalogue licensing deal with the AI startup Melodia.", "value": null, "unit": null,
+         "evidence_excerpt": "The agreement lets Melodia train on the label's back catalogue in exchange for revenue share.",
+         "source_url": "https://musicbusinessdaily.example.com/melodia-deal", "document_name": "Music Business Daily",
+         "publication_date": "2026-06-15", "data_collection_period": null, "methodology": "News report"},
+        {"claim_key": "artists_union_lawsuit", "subtopic": "label deals and lawsuits", "content_type": "news",
+         "claim": "An artists' union sued an AI developer over the use of members' recordings as training data.", "value": null, "unit": null,
+         "evidence_excerpt": "The complaint alleges recordings were used for training without consent or payment.",
+         "source_url": "https://wire.example.com/2026/08/union-lawsuit", "document_name": "Wire Report",
+         "publication_date": "2026-08-02", "data_collection_period": null, "methodology": "News report"},
+        {"claim_key": "artists_union_lawsuit", "subtopic": "label deals and lawsuits", "content_type": "news",
+         "claim": "An artists' union has filed suit against an AI developer over training on members' recordings.", "value": null, "unit": null,
+         "evidence_excerpt": "Union leaders said members never agreed to their recordings being used as training data.",
+         "source_url": "https://industryledger.example.com/union-v-ai", "document_name": "The Industry Ledger",
+         "publication_date": "2026-08-03", "data_collection_period": null, "methodology": "News report"},
+        {"claim_key": "ai_track_streaming_share", "subtopic": "streaming share", "content_type": "financial",
+         "claim": "AI-assisted tracks earned 9% of streaming revenue.", "value": "9", "unit": "% of streaming revenue",
+         "evidence_excerpt": "In the first half of 2026, AI-assisted tracks reached 9% of streaming revenue.",
+         "source_url": "https://streamstats.example.org/midyear-2026", "document_name": "StreamStats Mid-Year Update 2026",
+         "publication_date": "2026-07-20", "data_collection_period": "2026-01..2026-06", "methodology": "Royalty statement analysis across 3 major platforms"}
+      ]
+    },
+    {
+      "agent": "document_analysis",
+      "claims": [
+        {"claim_key": "watermark_robustness", "subtopic": "detection and watermarking", "content_type": "technical",
+         "claim": "Audio watermarks survived MP3 compression at 128 kbps in 97% of test clips.", "value": null, "unit": null,
+         "evidence_excerpt": "Watermark recovery after 128 kbps MP3 re-encoding succeeded for 97.1% of clips.",
+         "source_url": "https://audiosec.example.org/2026/robust-watermarking.pdf", "document_name": "Robust Audio Watermarking for Generative Music (AudioSec 2026)",
+         "publication_date": "2026-02-11", "data_collection_period": "benchmark run 2025-11", "methodology": "Benchmark on 10,000 clips"},
+        {"claim_key": "vocal_detector_accuracy", "subtopic": "detection and watermarking", "content_type": "technical",
+         "claim": "Classifiers detected AI-generated vocals with 94% accuracy on a held-out test set.", "value": null, "unit": null,
+         "evidence_excerpt": "Our detector reaches 94.0% accuracy on held-out tracks, falling to 71% on generators unseen in training.",
+         "source_url": "https://preprints.example.org/2605.01234", "document_name": "Detecting Synthetic Vocals (preprint)",
+         "publication_date": "2026-05-03", "data_collection_period": "dataset collected 2025-06..2025-12", "methodology": "Held-out test set of 4,200 tracks; accuracy drops on unseen generators"},
+        {"claim_key": "watermark_robustness", "subtopic": "detection and watermarking", "content_type": "technical",
+         "claim": "Watermarks remained detectable after 128 kbps MP3 compression in 97% of clips.", "value": null, "unit": null,
+         "evidence_excerpt": "We reproduce the 97% survival rate at 128 kbps on an independent clip set.",
+         "source_url": "https://replications.example.org/watermark-128", "document_name": "Independent Replication: Watermark Robustness",
+         "publication_date": "2026-06-30", "data_collection_period": "benchmark run 2026-05", "methodology": "Replication on 2,000 independent clips"}
+      ]
+    }
+  ]
+}
