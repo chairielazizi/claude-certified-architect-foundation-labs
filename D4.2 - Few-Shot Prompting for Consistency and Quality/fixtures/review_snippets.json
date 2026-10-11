@@ -1,0 +1,62 @@
+{
+  "_about": "Code snippets to review. 'kind' is the audited ground truth. S4 and S5 are 'novel': no few-shot example shows that exact construct, so handling them correctly means the model generalized the judgment, not the pattern.",
+  "snippets": [
+    {
+      "id": "S1",
+      "file": "config/loader.py",
+      "code": "def load_config(path):\n    f = open(path)\n    return json.load(f)",
+      "kind": "genuine",
+      "novel": false,
+      "truth": {
+        "location": "config/loader.py:2",
+        "issue": "The file handle is never closed; a long-running service that reloads config leaks descriptors.",
+        "severity": "low",
+        "suggested_fix": "Use 'with open(path) as f:' so the handle closes even on errors."
+      }
+    },
+    {
+      "id": "S2",
+      "file": "api/handlers.py",
+      "code": "@app.route('/orders')\ndef list_orders():\n    try:\n        return service.list_orders()\n    except Exception:\n        logger.exception('list_orders failed')\n        raise",
+      "kind": "acceptable",
+      "novel": false,
+      "suspicious_line": 5,
+      "looks_suspicious_because": "broad 'except Exception'"
+    },
+    {
+      "id": "S3",
+      "file": "billing/retry.py",
+      "code": "for attempt in range(3):\n    try:\n        gateway.charge(card, amount)\n        break\n    except Exception:\n        pass",
+      "kind": "genuine",
+      "novel": false,
+      "truth": {
+        "location": "billing/retry.py:5",
+        "issue": "Every exception is swallowed; after three failures the charge silently never happens and the caller assumes it succeeded.",
+        "severity": "high",
+        "suggested_fix": "Catch only the gateway's transient error, and raise after the last attempt."
+      }
+    },
+    {
+      "id": "S4",
+      "file": "tags/model.py",
+      "code": "def add_tag(tag, tags=[]):\n    tags.append(tag)\n    return tags",
+      "kind": "genuine",
+      "novel": true,
+      "truth": {
+        "location": "tags/model.py:1",
+        "issue": "Mutable default argument: every call that omits 'tags' appends to the same shared list.",
+        "severity": "medium",
+        "suggested_fix": "Default tags to None and create a new list inside the function."
+      }
+    },
+    {
+      "id": "S5",
+      "file": "jobs/cleanup.py",
+      "code": "try:\n    os.remove(tmp_path)\nexcept FileNotFoundError:\n    pass  # already removed by a previous run",
+      "kind": "acceptable",
+      "novel": true,
+      "suspicious_line": 4,
+      "looks_suspicious_because": "'except ...: pass'"
+    }
+  ]
+}

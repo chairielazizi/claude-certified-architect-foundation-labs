@@ -1,0 +1,29 @@
+{
+  "_about": "Documents with different structures. 'expected' is what a correct extraction must contain. P4 uses a structure no few-shot example shows (an 'Approach' label and footnote-style 'Notes').",
+  "documents": [
+    {
+      "id": "P1",
+      "structure": "Methods heading, inline (Author, Year) citations",
+      "text": "Title: Soil moisture and seedling survival in dryland wheat\nMethods: We ran a randomized block trial on 24 plots over two seasons, measuring volumetric soil moisture weekly.\nResults: Survival rose with moisture (Okafor et al., 2021), consistent with earlier field work (Lindqvist, 2019). Each plot received 250 mL of nutrient solution per week.",
+      "expected": {"methodology": true, "citations": 2, "measurements": 1}
+    },
+    {
+      "id": "P2",
+      "structure": "no Methods heading (method embedded in narrative), numbered references with a bibliography",
+      "text": "Title: Night-shift scheduling and medication errors\nMedication errors cluster in the last two hours of a shift [1]. To test this, we interviewed 42 nurses across three hospitals over eight weeks and matched their shift logs to incident reports. Errors fell by a third after shifts were capped at ten hours [2].\nReferences\n1. Haddad, R. (2020). Fatigue and error in clinical practice. Journal of Nursing Safety.\n2. Brennan, T., & Cho, L. (2022). Shift length policy outcomes. Health Policy Review.",
+      "expected": {"methodology": true, "citations": 2, "measurements": 0}
+    },
+    {
+      "id": "P3",
+      "structure": "informal field notes, informal measurements, citation inside a sentence",
+      "text": "Title: Sourdough starter vigor at altitude\nField notes, day 3. Following the feeding schedule from Moreau's 2018 baking handbook, we mixed a couple of cups of flour with about half a cup of water and a pinch of salt, then left the jar at 2,400 m for 12 hours.",
+      "expected": {"methodology": true, "citations": 1, "measurements": 3}
+    },
+    {
+      "id": "P4",
+      "structure": "'Approach' label instead of Methods, footnote-style Notes, informal quantity",
+      "text": "Title: Urban beehive yields\nApproach: Twelve rooftop hives were weighed monthly for a year; yield is the weight gained between April and September.\nHives fed roughly a dozen grams of pollen patty each in March produced more honey.^1\nNotes\n^1 Ferreira, M. (2017). Supplemental feeding in urban apiaries. Apidologie Letters.",
+      "expected": {"methodology": true, "citations": 1, "measurements": 1}
+    }
+  ]
+}
