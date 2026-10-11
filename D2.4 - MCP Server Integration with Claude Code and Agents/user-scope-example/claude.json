@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "scratch-notes": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["/home/me/experiments/notes_server.py", "--serve"],
+      "env": {
+        "NOTES_DIR": "/home/me/notes"
+      }
+    }
+  },
+  "projects": {
+    "/home/me/work/research-app": {
+      "mcpServers": {
+        "db-explorer-wip": {
+          "type": "stdio",
+          "command": "npx",
+          "args": ["tsx", "/home/me/tools/dbExplorer.ts"]
+        }
+      }
+    }
+  }
+}

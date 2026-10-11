@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_TOKEN}"
+      }
+    },
+    "issue-tracker": {
+      "type": "http",
+      "url": "${JIRA_MCP_URL}",
+      "headers": {
+        "Authorization": "Bearer ${JIRA_API_TOKEN}"
+      }
+    },
+    "team-kb": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["servers/team_kb_server.py", "--serve"],
+      "env": {
+        "KB_TOKEN": "${KB_TOKEN}",
+        "KB_URL": "${KB_URL:-http://localhost:8080}"
+      }
+    }
+  }
+}
